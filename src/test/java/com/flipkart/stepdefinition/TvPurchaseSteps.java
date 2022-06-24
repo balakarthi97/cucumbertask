@@ -1,4 +1,4 @@
-package com.flipkarkart.stepdefinition;
+package com.flipkart.stepdefinition;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,32 +8,35 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+
+import com.flipkart.objectrepository.TvPurchasePage;
+import com.flipkart.resources.CommonActions;
 
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.When;
 
-public class TvPurchaseSteps {
+public class TvPurchaseSteps extends CommonActions {
+	
+	CommonActions caObj = new CommonActions ();
+	TvPurchasePage tvPageObj = new TvPurchasePage ();
+	static WebDriver driver ;
 	
 	@When("user search tv and choose")
 	public void user_search_tv_and_choose() throws InterruptedException {
 		
-		WebElement mobile = MobilePurchaseSteps.driver.findElement(By.xpath("//input [@type = 'text']")); 
-		 mobile.sendKeys("Sumsung tv");
-		 mobile.sendKeys(Keys.ENTER);
+		tvPageObj.getSearch().sendKeys("Sumsung tv" , Keys.ENTER); 
+
 		 Thread.sleep(3000);
-		 MobilePurchaseSteps.driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
 		 
-		 MobilePurchaseSteps.driver.findElement(By.xpath("(//div [@class = ('_4rR01T')])[1]")).click();
+		 tvPageObj.getClick().click();
 		 
-		 Set<String> winId = MobilePurchaseSteps.driver.getWindowHandles();
-		 List<String> list = new ArrayList();
-		 list.addAll(winId);
-		 MobilePurchaseSteps.driver.switchTo().window(list.get(1));
+		 caObj.windowHandling();
 		 
 		 WebElement tvName = MobilePurchaseSteps.driver.findElement(By.xpath("//span [@class = 'B_NuCI']"));
 		 String tvNameSelect = tvName.getText();
-		 System.out.println("Fourth Mobile Name: " + tvNameSelect);
+		 System.out.println("Fourth Tv Name: " + tvNameSelect);
 	   
 
 	}
@@ -41,7 +44,7 @@ public class TvPurchaseSteps {
 	@When("user add tv to addtocart and doing payment")
 	public void user_add_tv_to_addtocart_and_doing_payment() throws InterruptedException {
 		
-		MobilePurchaseSteps.driver.findElement(By.xpath("//button [text() = 'ADD TO CART']")).click();
+		tvPageObj.getAddToCart().click();
 		 Thread.sleep(3000);
 
 	}
@@ -58,10 +61,7 @@ public class TvPurchaseSteps {
 		 
 		 MobilePurchaseSteps.driver.findElement(By.xpath("(//div [@class = ('_4rR01T')])[1]")).click();
 		 
-		 Set<String> winId = MobilePurchaseSteps.driver.getWindowHandles();
-		 List<String> list = new ArrayList();
-		 list.addAll(winId);
-		 MobilePurchaseSteps.driver.switchTo().window(list.get(1));
+		 caObj.windowHandling();
 		 
 		 WebElement tvName = MobilePurchaseSteps.driver.findElement(By.xpath("//span [@class = 'B_NuCI']"));
 		 String tvNameSelect = tvName.getText();
@@ -81,10 +81,7 @@ public class TvPurchaseSteps {
 		 
 		 MobilePurchaseSteps.driver.findElement(By.xpath("(//div [@class = ('_4rR01T')])[1]")).click();
 		 
-		 Set<String> winId = MobilePurchaseSteps.driver.getWindowHandles();
-		 List<String> list = new ArrayList();
-		 list.addAll(winId);
-		 MobilePurchaseSteps.driver.switchTo().window(list.get(1));
+		 caObj.windowHandling();
 		 
 		 WebElement tvName = MobilePurchaseSteps.driver.findElement(By.xpath("//span [@class = 'B_NuCI']"));
 		 String tvNameSelect = tvName.getText();
@@ -104,10 +101,7 @@ public class TvPurchaseSteps {
 		 
 		 MobilePurchaseSteps.driver.findElement(By.xpath("(//div [@class = ('_4rR01T')])[1]")).click();
 		 
-		 Set<String> winId = MobilePurchaseSteps.driver.getWindowHandles();
-		 List<String> list = new ArrayList();
-		 list.addAll(winId);
-		 MobilePurchaseSteps.driver.switchTo().window(list.get(1));
+		 caObj.windowHandling();
 		 
 		 WebElement tvName = MobilePurchaseSteps.driver.findElement(By.xpath("//span [@class = 'B_NuCI']"));
 		 String tvNameSelect = tvName.getText();
